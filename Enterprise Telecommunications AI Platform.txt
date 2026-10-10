@@ -1,0 +1,641 @@
+enterprise-telecommunications-ai-platform/
+│
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+├── ROADMAP.md
+├── SECURITY.md
+├── ARCHITECTURE.md
+├── TELECOM-ARCHITECTURE.md
+├── OSS-BSS-ARCHITECTURE.md
+├── NETWORK-ARCHITECTURE.md
+├── FIVEG-ARCHITECTURE.md
+├── EDGE-COMPUTING-ARCHITECTURE.md
+├── BILLING-ARCHITECTURE.md
+├── AI-ARCHITECTURE.md
+├── PLATFORM-ENGINEERING.md
+├── SRE-ARCHITECTURE.md
+├── OBSERVABILITY.md
+├── ZERO-TRUST-SECURITY.md
+├── DISASTER-RECOVERY.md
+├── DATA-PLATFORM.md
+├── CODEOWNERS
+├── .gitignore
+├── .dockerignore
+├── .editorconfig
+├── .pre-commit-config.yaml
+├── .env.example
+├── Makefile
+├── pyproject.toml
+├── requirements.txt
+├── requirements-dev.txt
+├── docker-compose.yml
+├── docker-compose.dev.yml
+├── docker-compose.monitoring.yml
+├── docker-compose.ai.yml
+│
+├── docs/
+│   ├── architecture/
+│   │   ├── telecom-platform.md
+│   │   ├── fiveg-orchestration.md
+│   │   ├── network-automation.md
+│   │   ├── edge-computing.md
+│   │   ├── subscriber-management.md
+│   │   ├── telecom-billing.md
+│   │   ├── network-observability.md
+│   │   ├── telecom-fraud-detection.md
+│   │   ├── iot-connectivity.md
+│   │   ├── roaming-management.md
+│   │   ├── event-driven-architecture.md
+│   │   ├── llmops-architecture.md
+│   │   ├── mlops-architecture.md
+│   │   ├── agentic-ai-architecture.md
+│   │   ├── observability-architecture.md
+│   │   ├── scalability-design.md
+│   │   ├── sre-architecture.md
+│   │   ├── zero-trust-security.md
+│   │   └── networking-architecture.md
+│   │
+│   ├── diagrams/
+│   │   ├── overall-platform.drawio
+│   │   ├── fiveg-network.drawio
+│   │   ├── telecom-oss-bss.drawio
+│   │   ├── edge-computing.drawio
+│   │   ├── billing-platform.drawio
+│   │   ├── ai-agents.drawio
+│   │   ├── observability.drawio
+│   │   ├── subscriber-management.drawio
+│   │   ├── telecom-intelligence.drawio
+│   │   └── disaster-recovery.drawio
+│   │
+│   ├── runbooks/
+│   ├── telecom-playbooks/
+│   ├── sre-playbooks/
+│   ├── onboarding/
+│   ├── api-docs/
+│   ├── operational-runbooks/
+│   ├── telecom-regulations/
+│   └── incident-postmortems/
+│
+├── shared/
+│   ├── auth/
+│   ├── telecom/
+│   ├── network/
+│   ├── fiveg/
+│   ├── billing/
+│   ├── subscribers/
+│   ├── edge/
+│   ├── iot/
+│   ├── routing/
+│   ├── observability/
+│   ├── fraud/
+│   ├── logging/
+│   ├── tracing/
+│   ├── middleware/
+│   ├── exceptions/
+│   ├── constants/
+│   ├── config/
+│   ├── schemas/
+│   ├── kafka/
+│   ├── database/
+│   ├── ai/
+│   ├── metrics/
+│   ├── caching/
+│   ├── events/
+│   └── utils/
+│
+├── infrastructure/
+│   ├── kubernetes/
+│   │   ├── base/
+│   │   │   ├── namespaces/
+│   │   │   ├── ingress/
+│   │   │   ├── storage/
+│   │   │   ├── configmaps/
+│   │   │   ├── secrets/
+│   │   │   ├── serviceaccounts/
+│   │   │   ├── rbac/
+│   │   │   ├── network-policies/
+│   │   │   ├── pod-security/
+│   │   │   ├── autoscaling/
+│   │   │   ├── cluster-policies/
+│   │   │   ├── resource-quotas/
+│   │   │   └── admission-controllers/
+│   │   │
+│   │   ├── edge-clusters/
+│   │   │   ├── fiveg-edge/
+│   │   │   ├── telecom-edge/
+│   │   │   ├── iot-edge/
+│   │   │   ├── subscriber-edge/
+│   │   │   └── routing-edge/
+│   │   │
+│   │   ├── environments/
+│   │   │   ├── dev/
+│   │   │   ├── qa/
+│   │   │   ├── staging/
+│   │   │   └── prod/
+│   │   │
+│   │   ├── telecom-services/
+│   │   │   ├── auth-service/
+│   │   │   ├── subscriber-management-service/
+│   │   │   ├── telecom-billing-service/
+│   │   │   ├── network-orchestration-service/
+│   │   │   ├── fiveg-core-service/
+│   │   │   ├── edge-computing-platform/
+│   │   │   ├── telecom-routing-service/
+│   │   │   ├── roaming-service/
+│   │   │   ├── iot-connectivity-platform/
+│   │   │   ├── fraud-detection-service/
+│   │   │   ├── recommendation-engine/
+│   │   │   ├── analytics-service/
+│   │   │   ├── ai-chat-service/
+│   │   │   ├── ai-agent-platform/
+│   │   │   ├── ai-self-healing-platform/
+│   │   │   ├── notification-service/
+│   │   │   ├── reporting-service/
+│   │   │   └── data-generator-service/
+│   │   │
+│   │   ├── databases/
+│   │   │   ├── postgres/
+│   │   │   ├── mongodb/
+│   │   │   ├── redis/
+│   │   │   ├── kafka/
+│   │   │   ├── qdrant/
+│   │   │   ├── clickhouse/
+│   │   │   ├── timeseries-db/
+│   │   │   └── minio/
+│   │   │
+│   │   ├── ai-platform/
+│   │   │   ├── airflow/
+│   │   │   ├── mlflow/
+│   │   │   ├── ollama/
+│   │   │   ├── vllm/
+│   │   │   ├── triton/
+│   │   │   ├── gpu-platform/
+│   │   │   └── edge-ai-platform/
+│   │   │
+│   │   ├── observability/
+│   │   │   ├── prometheus/
+│   │   │   ├── grafana/
+│   │   │   ├── loki/
+│   │   │   ├── tempo/
+│   │   │   ├── alertmanager/
+│   │   │   └── opentelemetry/
+│   │   │
+│   │   ├── security/
+│   │   │   ├── vault/
+│   │   │   ├── opa/
+│   │   │   ├── kyverno/
+│   │   │   ├── trivy/
+│   │   │   ├── falco/
+│   │   │   └── cert-manager/
+│   │   │
+│   │   └── service-mesh/
+│   │       ├── istio/
+│   │       ├── gateways/
+│   │       ├── mtls/
+│   │       └── traffic-management/
+│   │
+│   ├── terraform/
+│   │   ├── aws/
+│   │   ├── kubernetes/
+│   │   ├── edge-infrastructure/
+│   │   ├── networking/
+│   │   ├── telecom-networking/
+│   │   ├── databases/
+│   │   ├── observability/
+│   │   ├── security/
+│   │   ├── gpu-infrastructure/
+│   │   └── disaster-recovery/
+│   │
+│   └── argocd/
+│       ├── root-app.yaml
+│       ├── applications/
+│       ├── projects/
+│       └── environments/
+│
+├── platform/
+│   ├── api-gateway/
+│   ├── service-discovery/
+│   ├── workflow-engine/
+│   ├── workflow-orchestrator/
+│   ├── realtime-event-bus/
+│   ├── schema-registry/
+│   ├── policy-engine/
+│   ├── audit-framework/
+│   ├── feature-flags/
+│   ├── deployment-manager/
+│   ├── release-manager/
+│   ├── rate-limiter/
+│   │
+│   ├── telecom-platform/
+│   │   ├── oss-platform/
+│   │   ├── bss-platform/
+│   │   ├── subscriber-orchestration/
+│   │   ├── network-orchestration/
+│   │   ├── telecom-inventory/
+│   │   ├── telecom-marketplace/
+│   │   ├── charging-platform/
+│   │   └── telecom-analytics/
+│   │
+│   ├── edge-platform/
+│   │   ├── edge-orchestration/
+│   │   ├── edge-workloads/
+│   │   ├── edge-ai/
+│   │   ├── edge-observability/
+│   │   ├── edge-routing/
+│   │   ├── edge-security/
+│   │   ├── edge-networking/
+│   │   └── edge-analytics/
+│   │
+│   └── knowledge-platform/
+│       ├── telecom-regulations/
+│       ├── network-runbooks/
+│       ├── operational-runbooks/
+│       ├── incident-history/
+│       ├── vectorized-documents/
+│       ├── embeddings/
+│       ├── rag-datasets/
+│       └── telecom-knowledge-base/
+│
+├── services/
+│   │
+│   ├── subscriber-management-service/
+│   │   ├── subscriber-profiles/
+│   │   ├── sim-management/
+│   │   ├── activation-workflows/
+│   │   ├── subscriber-authentication/
+│   │   ├── customer-lifecycle-management/
+│   │   ├── usage-monitoring/
+│   │   ├── prepaid-postpaid-management/
+│   │   └── subscriber-analytics/
+│   │
+│   ├── telecom-billing-service/
+│   │   ├── charging-engine/
+│   │   ├── realtime-billing/
+│   │   ├── invoicing/
+│   │   ├── mediation-platform/
+│   │   ├── usage-rating/
+│   │   ├── roaming-billing/
+│   │   ├── payment-processing/
+│   │   └── billing-analytics/
+│   │
+│   ├── network-orchestration-service/
+│   │   ├── network-automation/
+│   │   ├── network-provisioning/
+│   │   ├── traffic-engineering/
+│   │   ├── network-optimization/
+│   │   ├── network-capacity-planning/
+│   │   ├── network-monitoring/
+│   │   ├── predictive-maintenance/
+│   │   └── network-analytics/
+│   │
+│   ├── fiveg-core-service/
+│   │   ├── network-slicing/
+│   │   ├── fiveg-control-plane/
+│   │   ├── fiveg-user-plane/
+│   │   ├── low-latency-routing/
+│   │   ├── mobility-management/
+│   │   ├── spectrum-management/
+│   │   ├── edge-connectivity/
+│   │   └── fiveg-analytics/
+│   │
+│   ├── edge-computing-platform/
+│   │   ├── edge-workload-management/
+│   │   ├── distributed-edge-ai/
+│   │   ├── low-latency-processing/
+│   │   ├── edge-orchestration/
+│   │   ├── edge-observability/
+│   │   ├── edge-security/
+│   │   ├── edge-networking/
+│   │   └── edge-analytics/
+│   │
+│   ├── telecom-routing-service/
+│   │   ├── call-routing/
+│   │   ├── data-routing/
+│   │   ├── traffic-balancing/
+│   │   ├── qos-management/
+│   │   ├── latency-optimization/
+│   │   ├── intelligent-routing/
+│   │   ├── route-failover/
+│   │   └── routing-analytics/
+│   │
+│   ├── roaming-service/
+│   │   ├── roaming-management/
+│   │   ├── roaming-agreements/
+│   │   ├── international-routing/
+│   │   ├── roaming-billing/
+│   │   ├── roaming-fraud-detection/
+│   │   ├── realtime-roaming-monitoring/
+│   │   ├── roaming-optimization/
+│   │   └── roaming-analytics/
+│   │
+│   ├── iot-connectivity-platform/
+│   │   ├── device-connectivity/
+│   │   ├── iot-subscription-management/
+│   │   ├── iot-routing/
+│   │   ├── iot-observability/
+│   │   ├── low-power-networking/
+│   │   ├── edge-device-management/
+│   │   ├── iot-security/
+│   │   └── iot-analytics/
+│   │
+│   ├── fraud-detection-service/
+│   │   ├── telecom-fraud-detection/
+│   │   ├── sim-swap-detection/
+│   │   ├── roaming-fraud-analysis/
+│   │   ├── billing-fraud-analysis/
+│   │   ├── anomaly-detection/
+│   │   ├── subscriber-risk-scoring/
+│   │   ├── realtime-monitoring/
+│   │   └── fraud-analytics/
+│   │
+│   ├── recommendation-engine/
+│   │   ├── network-recommendations/
+│   │   ├── routing-recommendations/
+│   │   ├── subscriber-recommendations/
+│   │   ├── pricing-recommendations/
+│   │   ├── infrastructure-recommendations/
+│   │   ├── predictive-recommendations/
+│   │   ├── explainability/
+│   │   ├── feature-engineering/
+│   │   ├── realtime-serving/
+│   │   └── monitoring/
+│   │
+│   ├── analytics-service/
+│   │   ├── network-analytics/
+│   │   ├── subscriber-analytics/
+│   │   ├── operational-intelligence/
+│   │   ├── realtime-dashboards/
+│   │   ├── predictive-analytics/
+│   │   ├── executive-reporting/
+│   │   ├── qos-reporting/
+│   │   └── telecom-reporting/
+│   │
+│   ├── ai-chat-service/
+│   │   ├── telecom-assistant/
+│   │   ├── network-assistant/
+│   │   ├── customer-support-assistant/
+│   │   ├── billing-assistant/
+│   │   ├── troubleshooting-assistant/
+│   │   ├── multilingual-support/
+│   │   ├── voice-support/
+│   │   ├── rag-retrieval/
+│   │   ├── semantic-search/
+│   │   ├── embeddings/
+│   │   ├── prompt-management/
+│   │   ├── context-management/
+│   │   ├── memory-management/
+│   │   ├── tool-calling/
+│   │   ├── hallucination-detection/
+│   │   ├── guardrails/
+│   │   └── pii-redaction/
+│   │
+│   ├── ai-agent-platform/
+│   │   ├── agent-registry/
+│   │   ├── orchestration-engine/
+│   │   ├── workflow-memory/
+│   │   ├── network-agent/
+│   │   ├── routing-agent/
+│   │   ├── telecom-operations-agent/
+│   │   ├── billing-agent/
+│   │   ├── fraud-agent/
+│   │   ├── edge-agent/
+│   │   ├── remediation-agent/
+│   │   ├── subscriber-support-agent/
+│   │   └── sre-agent/
+│   │
+│   ├── ai-self-healing-platform/
+│   │   ├── incident-detection/
+│   │   ├── anomaly-monitoring/
+│   │   ├── alert-correlation/
+│   │   ├── root-cause-analysis/
+│   │   ├── remediation-engine/
+│   │   ├── network-healing/
+│   │   ├── service-recovery/
+│   │   ├── ai-runbooks/
+│   │   ├── incident-replay/
+│   │   ├── chaos-remediation/
+│   │   └── postmortem-generation/
+│   │
+│   ├── data-generator-service/
+│   │   ├── synthetic-network-events/
+│   │   ├── synthetic-subscriber-events/
+│   │   ├── synthetic-fiveg-events/
+│   │   ├── synthetic-routing-events/
+│   │   ├── synthetic-billing-events/
+│   │   ├── synthetic-roaming-events/
+│   │   ├── synthetic-iot-events/
+│   │   ├── synthetic-fraud-events/
+│   │   ├── synthetic-edge-events/
+│   │   ├── anomaly-generator/
+│   │   ├── observability-event-generator/
+│   │   ├── chatbot-conversation-generator/
+│   │   ├── ai-training-data/
+│   │   ├── kafka-streaming-engine/
+│   │   ├── realtime-streaming/
+│   │   ├── replay-engine/
+│   │   ├── orchestration/
+│   │   ├── schedulers/
+│   │   ├── benchmark-datasets/
+│   │   ├── chaos-event-generator/
+│   │   ├── load-testing-data/
+│   │   ├── network-simulations/
+│   │   └── tests/
+│   │
+│   ├── notification-service/
+│   │   ├── network-alerts/
+│   │   ├── subscriber-alerts/
+│   │   ├── billing-alerts/
+│   │   ├── roaming-alerts/
+│   │   ├── outage-alerts/
+│   │   └── realtime-notifications/
+│   │
+│   └── reporting-service/
+│       ├── telecom-reports/
+│       ├── billing-reports/
+│       ├── network-reports/
+│       ├── operational-reports/
+│       ├── executive-reports/
+│       └── qos-reports/
+│
+├── data-platform/
+│   ├── postgres/
+│   ├── mongodb/
+│   ├── redis/
+│   ├── kafka/
+│   ├── qdrant/
+│   ├── clickhouse/
+│   ├── timeseries-db/
+│   ├── data-lake/
+│   ├── data-warehouse/
+│   ├── metadata-management/
+│   ├── data-governance/
+│   ├── data-quality/
+│   ├── data-lineage/
+│   └── master-data-management/
+│
+├── ai/
+│   ├── llm-runtime/
+│   │   ├── ollama/
+│   │   ├── llama/
+│   │   ├── mistral/
+│   │   ├── deepseek/
+│   │   ├── gemma/
+│   │   ├── phi/
+│   │   └── inference-server/
+│   │
+│   ├── rag-system/
+│   ├── embeddings/
+│   ├── network-ai-models/
+│   ├── routing-models/
+│   ├── telecom-fraud-models/
+│   ├── qos-models/
+│   ├── subscriber-behavior-models/
+│   ├── forecasting-models/
+│   ├── graph-ai/
+│   ├── edge-ai/
+│   ├── multimodal-ai/
+│   ├── agentic-ai/
+│   ├── synthetic-data-generation/
+│   └── ai-security/
+│
+├── mlops/
+│   ├── airflow/
+│   ├── mlflow/
+│   ├── feature-store/
+│   ├── data-validation/
+│   ├── model-training/
+│   ├── model-serving/
+│   ├── network-intelligence/
+│   ├── routing-intelligence/
+│   ├── telecom-forecasting/
+│   ├── prompt-evaluation/
+│   ├── drift-detection/
+│   ├── ai-observability/
+│   └── model-monitoring/
+│
+├── observability/
+│   ├── prometheus/
+│   ├── grafana/
+│   ├── loki/
+│   ├── tempo/
+│   ├── alertmanager/
+│   ├── opentelemetry/
+│   ├── distributed-tracing/
+│   ├── service-maps/
+│   ├── network-monitoring/
+│   ├── ai-observability/
+│   ├── realtime-monitoring/
+│   ├── telecom-monitoring/
+│   └── dashboards/
+│
+├── security/
+│   ├── vault/
+│   ├── iam/
+│   ├── encryption/
+│   ├── zero-trust/
+│   ├── runtime-security/
+│   ├── telecom-security/
+│   ├── edge-security/
+│   ├── vulnerability-scanning/
+│   ├── image-scanning/
+│   ├── prompt-security/
+│   ├── fraud-protection/
+│   └── audit-logging/
+│
+├── sre/
+│   ├── chaos-engineering/
+│   ├── incident-management/
+│   ├── reliability-testing/
+│   ├── performance-testing/
+│   ├── load-testing/
+│   ├── stress-testing/
+│   ├── network-failover-testing/
+│   ├── disaster-recovery/
+│   ├── auto-remediation/
+│   ├── capacity-planning/
+│   ├── slos/
+│   ├── slis/
+│   ├── error-budgets/
+│   └── postmortems/
+│
+├── sdk/
+│   ├── python-sdk/
+│   ├── go-sdk/
+│   ├── nodejs-sdk/
+│   ├── edge-sdk/
+│   └── internal-tools/
+│
+├── benchmarks/
+├── performance-reports/
+├── api-contracts/
+├── protobuf/
+├── avro/
+│
+├── scripts/
+│   ├── deploy.sh
+│   ├── rollback.sh
+│   ├── cleanup.sh
+│   ├── monitoring.sh
+│   ├── backup.sh
+│   ├── restore.sh
+│   ├── recovery.sh
+│   ├── validation.sh
+│   ├── platform-healthcheck.sh
+│   ├── kafka-bootstrap.sh
+│   ├── qdrant-bootstrap.sh
+│   ├── minio-bootstrap.sh
+│   ├── airflow-bootstrap.sh
+│   ├── mlflow-bootstrap.sh
+│   ├── ollama-bootstrap.sh
+│   ├── resilience-test.sh
+│   ├── load-test.sh
+│   ├── stress-test.sh
+│   ├── network-simulation.sh
+│   ├── telecom-simulation.sh
+│   ├── chaos-test.sh
+│   └── disaster-recovery-test.sh
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   ├── e2e/
+│   ├── performance/
+│   ├── load/
+│   ├── stress/
+│   ├── resilience/
+│   ├── chaos/
+│   ├── security/
+│   ├── compliance/
+│   ├── mlops/
+│   ├── llmops/
+│   ├── rag/
+│   ├── chatbot/
+│   ├── ai-agents/
+│   ├── fiveg/
+│   ├── telecom-routing/
+│   ├── edge-computing/
+│   ├── subscriber-management/
+│   ├── data-generation/
+│   └── platform/
+│
+└── .github/
+    └── workflows/
+        ├── ci.yml
+        ├── cd.yml
+        ├── security.yml
+        ├── dependency-scan.yml
+        ├── image-scan.yml
+        ├── kubernetes.yml
+        ├── observability.yml
+        ├── mlops.yml
+        ├── llmops.yml
+        ├── rag.yml
+        ├── chatbot.yml
+        ├── ai-agents.yml
+        ├── fiveg.yml
+        ├── synthetic-data.yml
+        ├── chaos-engineering.yml
+        ├── disaster-recovery.yml
+        └── platform-validation.yml

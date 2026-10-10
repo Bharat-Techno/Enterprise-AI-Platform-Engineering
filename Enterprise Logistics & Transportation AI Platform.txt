@@ -1,0 +1,665 @@
+enterprise-logistics-ai-platform/
+│
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+├── ROADMAP.md
+├── SECURITY.md
+├── ARCHITECTURE.md
+├── BUSINESS-ARCHITECTURE.md
+├── SUPPLY-CHAIN-ARCHITECTURE.md
+├── AI-ARCHITECTURE.md
+├── PLATFORM-ENGINEERING.md
+├── SRE-ARCHITECTURE.md
+├── TRANSPORTATION-COMPLIANCE.md
+├── DATA-PLATFORM.md
+├── DISASTER-RECOVERY.md
+├── CODEOWNERS
+├── .gitignore
+├── .dockerignore
+├── .editorconfig
+├── .env.example
+├── Makefile
+├── pyproject.toml
+├── requirements.txt
+├── requirements-dev.txt
+├── docker-compose.yml
+├── docker-compose.dev.yml
+├── docker-compose.monitoring.yml
+├── docker-compose.ai.yml
+│
+├── docs/
+│   ├── architecture/
+│   │   ├── logistics-domain-architecture.md
+│   │   ├── transportation-operations.md
+│   │   ├── warehouse-operations.md
+│   │   ├── fleet-management.md
+│   │   ├── ai-route-optimization.md
+│   │   ├── supply-chain-intelligence.md
+│   │   ├── predictive-maintenance.md
+│   │   ├── digital-twin-architecture.md
+│   │   ├── logistics-control-tower.md
+│   │   ├── event-driven-architecture.md
+│   │   ├── llmops-architecture.md
+│   │   ├── mlops-architecture.md
+│   │   ├── agentic-ai-architecture.md
+│   │   ├── recommendation-engine.md
+│   │   ├── observability-architecture.md
+│   │   ├── sre-architecture.md
+│   │   ├── disaster-recovery.md
+│   │   ├── scalability-design.md
+│   │   ├── zero-trust-security.md
+│   │   └── networking-architecture.md
+│   │
+│   ├── diagrams/
+│   │   ├── overall-system.drawio
+│   │   ├── kubernetes-cluster.drawio
+│   │   ├── kafka-event-flow.drawio
+│   │   ├── fleet-management.drawio
+│   │   ├── warehouse-flow.drawio
+│   │   ├── route-optimization.drawio
+│   │   ├── ai-agents.drawio
+│   │   ├── control-tower.drawio
+│   │   ├── observability.drawio
+│   │   ├── self-healing.drawio
+│   │   └── disaster-recovery.drawio
+│   │
+│   ├── runbooks/
+│   ├── sre-playbooks/
+│   ├── onboarding/
+│   ├── api-docs/
+│   ├── compliance/
+│   ├── logistics-regulations/
+│   ├── postmortems/
+│   └── business-flows/
+│
+├── shared/
+│   ├── auth/
+│   ├── logging/
+│   ├── tracing/
+│   ├── middleware/
+│   ├── exceptions/
+│   ├── constants/
+│   ├── config/
+│   ├── schemas/
+│   ├── kafka/
+│   ├── database/
+│   ├── ai/
+│   ├── observability/
+│   ├── logistics/
+│   ├── transportation/
+│   ├── geospatial/
+│   ├── iot/
+│   ├── telemetry/
+│   ├── weather/
+│   ├── security/
+│   ├── metrics/
+│   ├── caching/
+│   ├── events/
+│   └── utils/
+│
+├── infrastructure/
+│   ├── kubernetes/
+│   │   ├── base/
+│   │   │   ├── namespaces/
+│   │   │   ├── ingress/
+│   │   │   ├── storage/
+│   │   │   ├── configmaps/
+│   │   │   ├── secrets/
+│   │   │   ├── serviceaccounts/
+│   │   │   ├── rbac/
+│   │   │   ├── network-policies/
+│   │   │   ├── pod-security/
+│   │   │   ├── autoscaling/
+│   │   │   ├── cluster-policies/
+│   │   │   └── admission-controllers/
+│   │   │
+│   │   ├── environments/
+│   │   │   ├── dev/
+│   │   │   ├── qa/
+│   │   │   ├── staging/
+│   │   │   └── prod/
+│   │   │
+│   │   ├── services/
+│   │   │   ├── auth-service/
+│   │   │   ├── shipment-service/
+│   │   │   ├── transportation-service/
+│   │   │   ├── fleet-management-service/
+│   │   │   ├── warehouse-service/
+│   │   │   ├── route-optimization-service/
+│   │   │   ├── dispatch-service/
+│   │   │   ├── inventory-service/
+│   │   │   ├── tracking-service/
+│   │   │   ├── predictive-maintenance-service/
+│   │   │   ├── analytics-service/
+│   │   │   ├── pricing-engine/
+│   │   │   ├── recommendation-engine/
+│   │   │   ├── ai-chat-service/
+│   │   │   ├── ai-agent-platform/
+│   │   │   ├── ai-self-healing-platform/
+│   │   │   ├── geospatial-service/
+│   │   │   ├── weather-service/
+│   │   │   ├── customs-compliance-service/
+│   │   │   ├── notification-service/
+│   │   │   ├── reporting-service/
+│   │   │   └── data-generator-service/
+│   │   │
+│   │   ├── databases/
+│   │   │   ├── postgres/
+│   │   │   ├── mongodb/
+│   │   │   ├── redis/
+│   │   │   ├── kafka/
+│   │   │   ├── elasticsearch/
+│   │   │   ├── qdrant/
+│   │   │   ├── clickhouse/
+│   │   │   └── minio/
+│   │   │
+│   │   ├── ai-platform/
+│   │   │   ├── airflow/
+│   │   │   ├── mlflow/
+│   │   │   ├── ollama/
+│   │   │   ├── vllm/
+│   │   │   ├── triton/
+│   │   │   └── gpu-platform/
+│   │   │
+│   │   ├── observability/
+│   │   │   ├── prometheus/
+│   │   │   ├── grafana/
+│   │   │   ├── loki/
+│   │   │   ├── tempo/
+│   │   │   ├── alertmanager/
+│   │   │   └── opentelemetry/
+│   │   │
+│   │   ├── security/
+│   │   │   ├── vault/
+│   │   │   ├── opa/
+│   │   │   ├── kyverno/
+│   │   │   ├── trivy/
+│   │   │   └── cert-manager/
+│   │   │
+│   │   └── service-mesh/
+│   │       ├── istio/
+│   │       ├── gateways/
+│   │       ├── mtls/
+│   │       └── traffic-management/
+│   │
+│   ├── terraform/
+│   │   ├── aws/
+│   │   ├── kubernetes/
+│   │   ├── networking/
+│   │   ├── databases/
+│   │   ├── storage/
+│   │   ├── observability/
+│   │   ├── security/
+│   │   ├── gpu-infrastructure/
+│   │   └── disaster-recovery/
+│   │
+│   └── argocd/
+│       ├── root-app.yaml
+│       ├── applications/
+│       ├── projects/
+│       └── environments/
+│
+├── platform/
+│   ├── api-gateway/
+│   ├── service-discovery/
+│   ├── workflow-engine/
+│   ├── workflow-orchestrator/
+│   ├── event-bus/
+│   ├── schema-registry/
+│   ├── policy-engine/
+│   ├── audit-framework/
+│   ├── feature-flags/
+│   ├── deployment-manager/
+│   ├── release-manager/
+│   ├── service-catalog/
+│   ├── rate-limiter/
+│   │
+│   ├── developer-platform/
+│   │   ├── service-templates/
+│   │   ├── deployment-templates/
+│   │   ├── golden-paths/
+│   │   └── developer-portal/
+│   │
+│   ├── notification-platform/
+│   │   ├── email/
+│   │   ├── sms/
+│   │   ├── push/
+│   │   ├── whatsapp/
+│   │   ├── alerts/
+│   │   └── webhooks/
+│   │
+│   └── knowledge-platform/
+│       ├── logistics-regulations/
+│       ├── warehouse-procedures/
+│       ├── transportation-rules/
+│       ├── customs-documents/
+│       ├── vectorized-documents/
+│       ├── embeddings/
+│       ├── rag-datasets/
+│       └── operational-runbooks/
+│
+├── services/
+│   │
+│   ├── shipment-service/
+│   │   ├── shipment-booking/
+│   │   ├── shipment-tracking/
+│   │   ├── shipment-routing/
+│   │   ├── package-management/
+│   │   ├── international-shipping/
+│   │   ├── customs-documentation/
+│   │   ├── shipment-analytics/
+│   │   └── realtime-status/
+│   │
+│   ├── transportation-service/
+│   │   ├── transport-planning/
+│   │   ├── load-balancing/
+│   │   ├── delivery-operations/
+│   │   ├── dispatch-coordination/
+│   │   ├── multimodal-transport/
+│   │   ├── last-mile-delivery/
+│   │   ├── realtime-transport-monitoring/
+│   │   └── transportation-analytics/
+│   │
+│   ├── fleet-management-service/
+│   │   ├── vehicle-management/
+│   │   ├── driver-management/
+│   │   ├── fuel-monitoring/
+│   │   ├── gps-tracking/
+│   │   ├── telematics/
+│   │   ├── fleet-health/
+│   │   ├── fleet-analytics/
+│   │   └── vehicle-compliance/
+│   │
+│   ├── warehouse-service/
+│   │   ├── warehouse-management/
+│   │   ├── inventory-tracking/
+│   │   ├── picking-packing/
+│   │   ├── robotic-automation/
+│   │   ├── smart-shelving/
+│   │   ├── warehouse-analytics/
+│   │   ├── cold-storage-monitoring/
+│   │   └── warehouse-digital-twin/
+│   │
+│   ├── route-optimization-service/
+│   │   ├── ai-route-optimization/
+│   │   ├── traffic-analysis/
+│   │   ├── fuel-optimization/
+│   │   ├── weather-routing/
+│   │   ├── congestion-analysis/
+│   │   ├── delivery-time-prediction/
+│   │   ├── route-simulation/
+│   │   └── realtime-rerouting/
+│   │
+│   ├── dispatch-service/
+│   │   ├── smart-dispatching/
+│   │   ├── workload-balancing/
+│   │   ├── driver-assignment/
+│   │   ├── dispatch-optimization/
+│   │   ├── emergency-routing/
+│   │   ├── realtime-coordination/
+│   │   └── dispatch-analytics/
+│   │
+│   ├── tracking-service/
+│   │   ├── realtime-tracking/
+│   │   ├── gps-streaming/
+│   │   ├── iot-streaming/
+│   │   ├── geofencing/
+│   │   ├── anomaly-detection/
+│   │   ├── location-history/
+│   │   ├── map-visualization/
+│   │   └── predictive-arrivals/
+│   │
+│   ├── inventory-service/
+│   │   ├── inventory-management/
+│   │   ├── stock-prediction/
+│   │   ├── replenishment/
+│   │   ├── supplier-management/
+│   │   ├── procurement/
+│   │   ├── inventory-analytics/
+│   │   └── warehouse-synchronization/
+│   │
+│   ├── predictive-maintenance-service/
+│   │   ├── engine-monitoring/
+│   │   ├── vehicle-telemetry/
+│   │   ├── tire-health-monitoring/
+│   │   ├── sensor-analysis/
+│   │   ├── maintenance-prediction/
+│   │   ├── repair-workflows/
+│   │   ├── parts-inventory/
+│   │   └── maintenance-analytics/
+│   │
+│   ├── pricing-engine/
+│   │   ├── dynamic-pricing/
+│   │   ├── freight-pricing/
+│   │   ├── fuel-cost-analysis/
+│   │   ├── route-cost-optimization/
+│   │   ├── surge-pricing/
+│   │   ├── demand-forecasting/
+│   │   ├── contract-pricing/
+│   │   └── pricing-analytics/
+│   │
+│   ├── recommendation-engine/
+│   │   ├── route-recommendations/
+│   │   ├── warehouse-recommendations/
+│   │   ├── fleet-recommendations/
+│   │   ├── inventory-recommendations/
+│   │   ├── supplier-recommendations/
+│   │   ├── ai-ranking/
+│   │   ├── personalization/
+│   │   ├── explainability/
+│   │   ├── realtime-serving/
+│   │   └── monitoring/
+│   │
+│   ├── ai-chat-service/
+│   │   ├── logistics-chatbot/
+│   │   ├── dispatch-assistant/
+│   │   ├── multilingual-support/
+│   │   ├── voice-assistant/
+│   │   ├── warehouse-assistant/
+│   │   ├── shipment-assistant/
+│   │   ├── route-assistant/
+│   │   ├── rag-retrieval/
+│   │   ├── semantic-search/
+│   │   ├── embeddings/
+│   │   ├── prompt-management/
+│   │   ├── context-management/
+│   │   ├── memory-management/
+│   │   ├── tool-calling/
+│   │   ├── hallucination-detection/
+│   │   ├── guardrails/
+│   │   └── pii-redaction/
+│   │
+│   ├── ai-agent-platform/
+│   │   ├── agent-registry/
+│   │   ├── orchestration-engine/
+│   │   ├── workflow-memory/
+│   │   ├── dispatch-agent/
+│   │   ├── route-agent/
+│   │   ├── warehouse-agent/
+│   │   ├── fleet-agent/
+│   │   ├── customs-agent/
+│   │   ├── inventory-agent/
+│   │   ├── maintenance-agent/
+│   │   ├── pricing-agent/
+│   │   ├── compliance-agent/
+│   │   ├── support-agent/
+│   │   └── sre-agent/
+│   │
+│   ├── geospatial-service/
+│   │   ├── map-engine/
+│   │   ├── traffic-heatmaps/
+│   │   ├── route-visualization/
+│   │   ├── warehouse-geospatial-data/
+│   │   ├── port-analysis/
+│   │   ├── airport-analysis/
+│   │   ├── delivery-zones/
+│   │   └── realtime-geospatial-monitoring/
+│   │
+│   ├── weather-service/
+│   │   ├── weather-monitoring/
+│   │   ├── storm-analysis/
+│   │   ├── route-weather-analysis/
+│   │   ├── climate-risk-analysis/
+│   │   ├── delivery-risk-analysis/
+│   │   ├── weather-alerting/
+│   │   └── weather-forecasting/
+│   │
+│   ├── customs-compliance-service/
+│   │   ├── customs-validation/
+│   │   ├── shipment-compliance/
+│   │   ├── trade-regulations/
+│   │   ├── tax-calculation/
+│   │   ├── international-documentation/
+│   │   ├── fraud-detection/
+│   │   └── audit-trails/
+│   │
+│   ├── analytics-service/
+│   │   ├── logistics-analytics/
+│   │   ├── fleet-analytics/
+│   │   ├── warehouse-analytics/
+│   │   ├── route-profitability/
+│   │   ├── operational-intelligence/
+│   │   ├── realtime-dashboards/
+│   │   ├── executive-reporting/
+│   │   └── predictive-analytics/
+│   │
+│   ├── ai-self-healing-platform/
+│   │   ├── incident-detection/
+│   │   ├── anomaly-monitoring/
+│   │   ├── alert-correlation/
+│   │   ├── root-cause-analysis/
+│   │   ├── remediation-engine/
+│   │   ├── kubernetes-healing/
+│   │   ├── service-recovery/
+│   │   ├── ai-runbooks/
+│   │   ├── incident-replay/
+│   │   ├── chaos-remediation/
+│   │   └── postmortem-generation/
+│   │
+│   ├── data-generator-service/
+│   │   ├── synthetic-shipment-generator/
+│   │   ├── synthetic-fleet-generator/
+│   │   ├── synthetic-driver-generator/
+│   │   ├── synthetic-route-generator/
+│   │   ├── synthetic-warehouse-generator/
+│   │   ├── synthetic-inventory-generator/
+│   │   ├── synthetic-telemetry-generator/
+│   │   ├── synthetic-iot-streams/
+│   │   ├── synthetic-weather-generator/
+│   │   ├── synthetic-customs-data/
+│   │   ├── traffic-simulator/
+│   │   ├── route-delay-simulator/
+│   │   ├── fuel-usage-simulator/
+│   │   ├── anomaly-generator/
+│   │   ├── observability-event-generator/
+│   │   ├── chatbot-conversation-generator/
+│   │   ├── ai-training-data/
+│   │   ├── kafka-streaming-engine/
+│   │   ├── realtime-streaming/
+│   │   ├── replay-engine/
+│   │   ├── orchestration/
+│   │   ├── schedulers/
+│   │   ├── benchmark-datasets/
+│   │   ├── chaos-event-generator/
+│   │   ├── load-testing-data/
+│   │   ├── screenshots-generator/
+│   │   ├── video-generator/
+│   │   ├── document-generator/
+│   │   └── tests/
+│   │
+│   ├── notification-service/
+│   │   ├── shipment-alerts/
+│   │   ├── fleet-alerts/
+│   │   ├── warehouse-alerts/
+│   │   ├── dispatch-alerts/
+│   │   ├── delivery-alerts/
+│   │   └── realtime-notifications/
+│   │
+│   └── reporting-service/
+│       ├── operational-reports/
+│       ├── fleet-reports/
+│       ├── warehouse-reports/
+│       ├── compliance-reports/
+│       ├── executive-reports/
+│       └── audit-reports/
+│
+├── data-platform/
+│   ├── postgres/
+│   ├── mongodb/
+│   ├── redis/
+│   ├── kafka/
+│   ├── qdrant/
+│   ├── elasticsearch/
+│   ├── clickhouse/
+│   ├── data-lake/
+│   ├── data-warehouse/
+│   ├── metadata-management/
+│   ├── data-governance/
+│   ├── data-quality/
+│   ├── data-lineage/
+│   └── master-data-management/
+│
+├── ai/
+│   ├── llm-runtime/
+│   │   ├── ollama/
+│   │   ├── llama/
+│   │   ├── mistral/
+│   │   ├── deepseek/
+│   │   ├── gemma/
+│   │   ├── phi/
+│   │   └── inference-server/
+│   │
+│   ├── rag-system/
+│   ├── embeddings/
+│   ├── route-optimization-models/
+│   ├── predictive-maintenance-models/
+│   ├── demand-forecasting-models/
+│   ├── multimodal-ai/
+│   ├── computer-vision/
+│   ├── geospatial-ai/
+│   ├── digital-twin/
+│   ├── agentic-ai/
+│   ├── synthetic-data-generation/
+│   └── ai-security/
+│
+├── mlops/
+│   ├── airflow/
+│   ├── mlflow/
+│   ├── feature-store/
+│   ├── data-validation/
+│   ├── model-training/
+│   ├── model-serving/
+│   ├── route-optimization/
+│   ├── predictive-maintenance/
+│   ├── demand-forecasting/
+│   ├── prompt-evaluation/
+│   ├── drift-detection/
+│   ├── ai-observability/
+│   └── model-monitoring/
+│
+├── observability/
+│   ├── prometheus/
+│   ├── grafana/
+│   ├── loki/
+│   ├── tempo/
+│   ├── alertmanager/
+│   ├── opentelemetry/
+│   ├── distributed-tracing/
+│   ├── service-maps/
+│   ├── logistics-monitoring/
+│   ├── fleet-monitoring/
+│   ├── warehouse-monitoring/
+│   ├── ai-observability/
+│   ├── realtime-monitoring/
+│   └── dashboards/
+│
+├── security/
+│   ├── vault/
+│   ├── iam/
+│   ├── encryption/
+│   ├── zero-trust/
+│   ├── pii-protection/
+│   ├── runtime-security/
+│   ├── vulnerability-scanning/
+│   ├── image-scanning/
+│   ├── prompt-security/
+│   ├── policy-management/
+│   ├── transportation-compliance/
+│   └── audit-logging/
+│
+├── sre/
+│   ├── chaos-engineering/
+│   ├── incident-management/
+│   ├── reliability-testing/
+│   ├── performance-testing/
+│   ├── load-testing/
+│   ├── stress-testing/
+│   ├── failover-testing/
+│   ├── disaster-recovery/
+│   ├── auto-remediation/
+│   ├── capacity-planning/
+│   ├── slos/
+│   ├── slis/
+│   ├── error-budgets/
+│   └── postmortems/
+│
+├── sdk/
+│   ├── python-sdk/
+│   ├── cli/
+│   └── internal-tools/
+│
+├── benchmarks/
+├── api-contracts/
+├── protobuf/
+├── avro/
+├── performance-reports/
+│
+├── scripts/
+│   ├── deploy.sh
+│   ├── rollback.sh
+│   ├── cleanup.sh
+│   ├── monitoring.sh
+│   ├── backup.sh
+│   ├── restore.sh
+│   ├── recovery.sh
+│   ├── validation.sh
+│   ├── platform-healthcheck.sh
+│   ├── kafka-bootstrap.sh
+│   ├── qdrant-bootstrap.sh
+│   ├── elasticsearch-bootstrap.sh
+│   ├── minio-bootstrap.sh
+│   ├── airflow-bootstrap.sh
+│   ├── mlflow-bootstrap.sh
+│   ├── ollama-bootstrap.sh
+│   ├── resilience-test.sh
+│   ├── load-test.sh
+│   ├── stress-test.sh
+│   ├── chaos-test.sh
+│   └── disaster-recovery-test.sh
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   ├── e2e/
+│   ├── performance/
+│   ├── load/
+│   ├── stress/
+│   ├── resilience/
+│   ├── chaos/
+│   ├── security/
+│   ├── compliance/
+│   ├── mlops/
+│   ├── llmops/
+│   ├── rag/
+│   ├── chatbot/
+│   ├── ai-agents/
+│   ├── fleet-management/
+│   ├── warehouse/
+│   ├── transportation/
+│   ├── tracking/
+│   ├── route-optimization/
+│   ├── data-generation/
+│   └── platform/
+│
+└── .github/
+    └── workflows/
+        ├── ci.yml
+        ├── cd.yml
+        ├── security.yml
+        ├── dependency-scan.yml
+        ├── image-scan.yml
+        ├── kubernetes.yml
+        ├── observability.yml
+        ├── mlops.yml
+        ├── llmops.yml
+        ├── rag.yml
+        ├── chatbot.yml
+        ├── ai-agents.yml
+        ├── route-optimization.yml
+        ├── predictive-maintenance.yml
+        ├── synthetic-data.yml
+        ├── chaos-engineering.yml
+        ├── disaster-recovery.yml
+        └── platform-validation.yml

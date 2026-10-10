@@ -1,0 +1,655 @@
+enterprise-energy-grid-ai-platform/
+│
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+├── ROADMAP.md
+├── SECURITY.md
+├── ARCHITECTURE.md
+├── ENERGY-GRID-ARCHITECTURE.md
+├── AI-ARCHITECTURE.md
+├── PLATFORM-ENGINEERING.md
+├── SRE-ARCHITECTURE.md
+├── ENERGY-COMPLIANCE.md
+├── DATA-PLATFORM.md
+├── DISASTER-RECOVERY.md
+├── GRID-OPERATIONS.md
+├── SMART-GRID.md
+├── CODEOWNERS
+├── .gitignore
+├── .dockerignore
+├── .editorconfig
+├── .env.example
+├── Makefile
+├── pyproject.toml
+├── requirements.txt
+├── requirements-dev.txt
+├── docker-compose.yml
+├── docker-compose.dev.yml
+├── docker-compose.monitoring.yml
+├── docker-compose.ai.yml
+│
+├── docs/
+│   ├── architecture/
+│   │   ├── smart-grid-architecture.md
+│   │   ├── power-generation.md
+│   │   ├── transmission-distribution.md
+│   │   ├── renewable-energy-management.md
+│   │   ├── energy-trading-platform.md
+│   │   ├── grid-balancing.md
+│   │   ├── smart-metering.md
+│   │   ├── digital-twin-architecture.md
+│   │   ├── predictive-maintenance.md
+│   │   ├── grid-observability.md
+│   │   ├── event-driven-architecture.md
+│   │   ├── llmops-architecture.md
+│   │   ├── mlops-architecture.md
+│   │   ├── agentic-ai-architecture.md
+│   │   ├── recommendation-engine.md
+│   │   ├── chatbot-architecture.md
+│   │   ├── disaster-recovery.md
+│   │   ├── scalability-design.md
+│   │   ├── zero-trust-security.md
+│   │   └── networking-architecture.md
+│   │
+│   ├── diagrams/
+│   │   ├── overall-system.drawio
+│   │   ├── smart-grid.drawio
+│   │   ├── power-flow.drawio
+│   │   ├── renewable-energy.drawio
+│   │   ├── grid-balancing.drawio
+│   │   ├── digital-twin.drawio
+│   │   ├── ai-agents.drawio
+│   │   ├── observability.drawio
+│   │   ├── self-healing.drawio
+│   │   └── disaster-recovery.drawio
+│   │
+│   ├── runbooks/
+│   ├── sre-playbooks/
+│   ├── onboarding/
+│   ├── api-docs/
+│   ├── compliance/
+│   ├── energy-regulations/
+│   ├── postmortems/
+│   └── operational-workflows/
+│
+├── shared/
+│   ├── auth/
+│   ├── logging/
+│   ├── tracing/
+│   ├── middleware/
+│   ├── exceptions/
+│   ├── constants/
+│   ├── config/
+│   ├── schemas/
+│   ├── kafka/
+│   ├── database/
+│   ├── ai/
+│   ├── observability/
+│   ├── energy/
+│   ├── grid/
+│   ├── telemetry/
+│   ├── iot/
+│   ├── weather/
+│   ├── geospatial/
+│   ├── security/
+│   ├── metrics/
+│   ├── caching/
+│   ├── events/
+│   └── utils/
+│
+├── infrastructure/
+│   ├── kubernetes/
+│   │   ├── base/
+│   │   │   ├── namespaces/
+│   │   │   ├── ingress/
+│   │   │   ├── storage/
+│   │   │   ├── configmaps/
+│   │   │   ├── secrets/
+│   │   │   ├── serviceaccounts/
+│   │   │   ├── rbac/
+│   │   │   ├── network-policies/
+│   │   │   ├── pod-security/
+│   │   │   ├── autoscaling/
+│   │   │   ├── cluster-policies/
+│   │   │   └── admission-controllers/
+│   │   │
+│   │   ├── environments/
+│   │   │   ├── dev/
+│   │   │   ├── qa/
+│   │   │   ├── staging/
+│   │   │   └── prod/
+│   │   │
+│   │   ├── services/
+│   │   │   ├── auth-service/
+│   │   │   ├── grid-management-service/
+│   │   │   ├── power-generation-service/
+│   │   │   ├── renewable-energy-service/
+│   │   │   ├── transmission-service/
+│   │   │   ├── distribution-service/
+│   │   │   ├── smart-meter-service/
+│   │   │   ├── energy-trading-service/
+│   │   │   ├── grid-balancing-service/
+│   │   │   ├── battery-storage-service/
+│   │   │   ├── predictive-maintenance-service/
+│   │   │   ├── analytics-service/
+│   │   │   ├── weather-service/
+│   │   │   ├── geospatial-service/
+│   │   │   ├── recommendation-engine/
+│   │   │   ├── ai-chat-service/
+│   │   │   ├── ai-agent-platform/
+│   │   │   ├── ai-self-healing-platform/
+│   │   │   ├── notification-service/
+│   │   │   ├── reporting-service/
+│   │   │   └── data-generator-service/
+│   │   │
+│   │   ├── databases/
+│   │   │   ├── postgres/
+│   │   │   ├── mongodb/
+│   │   │   ├── redis/
+│   │   │   ├── kafka/
+│   │   │   ├── elasticsearch/
+│   │   │   ├── qdrant/
+│   │   │   ├── clickhouse/
+│   │   │   └── minio/
+│   │   │
+│   │   ├── ai-platform/
+│   │   │   ├── airflow/
+│   │   │   ├── mlflow/
+│   │   │   ├── ollama/
+│   │   │   ├── vllm/
+│   │   │   ├── triton/
+│   │   │   └── gpu-platform/
+│   │   │
+│   │   ├── observability/
+│   │   │   ├── prometheus/
+│   │   │   ├── grafana/
+│   │   │   ├── loki/
+│   │   │   ├── tempo/
+│   │   │   ├── alertmanager/
+│   │   │   └── opentelemetry/
+│   │   │
+│   │   ├── security/
+│   │   │   ├── vault/
+│   │   │   ├── opa/
+│   │   │   ├── kyverno/
+│   │   │   ├── trivy/
+│   │   │   └── cert-manager/
+│   │   │
+│   │   └── service-mesh/
+│   │       ├── istio/
+│   │       ├── gateways/
+│   │       ├── mtls/
+│   │       └── traffic-management/
+│   │
+│   ├── terraform/
+│   │   ├── aws/
+│   │   ├── kubernetes/
+│   │   ├── networking/
+│   │   ├── databases/
+│   │   ├── storage/
+│   │   ├── observability/
+│   │   ├── security/
+│   │   ├── gpu-infrastructure/
+│   │   └── disaster-recovery/
+│   │
+│   └── argocd/
+│       ├── root-app.yaml
+│       ├── applications/
+│       ├── projects/
+│       └── environments/
+│
+├── platform/
+│   ├── api-gateway/
+│   ├── workflow-engine/
+│   ├── workflow-orchestrator/
+│   ├── event-bus/
+│   ├── schema-registry/
+│   ├── policy-engine/
+│   ├── audit-framework/
+│   ├── service-catalog/
+│   ├── feature-flags/
+│   ├── deployment-manager/
+│   ├── release-manager/
+│   ├── rate-limiter/
+│   │
+│   ├── developer-platform/
+│   │   ├── service-templates/
+│   │   ├── deployment-templates/
+│   │   ├── golden-paths/
+│   │   └── developer-portal/
+│   │
+│   ├── notification-platform/
+│   │   ├── email/
+│   │   ├── sms/
+│   │   ├── push/
+│   │   ├── whatsapp/
+│   │   ├── alerts/
+│   │   └── webhooks/
+│   │
+│   └── knowledge-platform/
+│       ├── grid-regulations/
+│       ├── power-procedures/
+│       ├── maintenance-manuals/
+│       ├── renewable-guidelines/
+│       ├── vectorized-documents/
+│       ├── embeddings/
+│       ├── rag-datasets/
+│       └── operational-runbooks/
+│
+├── services/
+│   │
+│   ├── grid-management-service/
+│   │   ├── grid-monitoring/
+│   │   ├── load-balancing/
+│   │   ├── outage-management/
+│   │   ├── voltage-control/
+│   │   ├── frequency-management/
+│   │   ├── demand-response/
+│   │   ├── realtime-grid-analytics/
+│   │   └── grid-stability/
+│   │
+│   ├── power-generation-service/
+│   │   ├── thermal-power/
+│   │   ├── hydro-power/
+│   │   ├── nuclear-power/
+│   │   ├── gas-turbines/
+│   │   ├── generation-monitoring/
+│   │   ├── efficiency-analysis/
+│   │   ├── generation-forecasting/
+│   │   └── turbine-monitoring/
+│   │
+│   ├── renewable-energy-service/
+│   │   ├── solar-energy/
+│   │   ├── wind-energy/
+│   │   ├── battery-storage/
+│   │   ├── renewable-forecasting/
+│   │   ├── weather-correlation/
+│   │   ├── energy-optimization/
+│   │   ├── microgrids/
+│   │   └── carbon-analytics/
+│   │
+│   ├── transmission-service/
+│   │   ├── transmission-lines/
+│   │   ├── substations/
+│   │   ├── transformer-monitoring/
+│   │   ├── transmission-analytics/
+│   │   ├── fault-detection/
+│   │   ├── line-loss-analysis/
+│   │   ├── power-flow-analysis/
+│   │   └── infrastructure-monitoring/
+│   │
+│   ├── distribution-service/
+│   │   ├── distribution-networks/
+│   │   ├── smart-distribution/
+│   │   ├── outage-detection/
+│   │   ├── smart-switching/
+│   │   ├── feeder-monitoring/
+│   │   ├── distribution-analytics/
+│   │   ├── energy-theft-detection/
+│   │   └── service-reliability/
+│   │
+│   ├── smart-meter-service/
+│   │   ├── smart-meter-ingestion/
+│   │   ├── realtime-meter-streaming/
+│   │   ├── energy-consumption-analysis/
+│   │   ├── customer-usage-patterns/
+│   │   ├── billing-data/
+│   │   ├── anomaly-detection/
+│   │   ├── demand-forecasting/
+│   │   └── edge-computing/
+│   │
+│   ├── energy-trading-service/
+│   │   ├── energy-marketplace/
+│   │   ├── realtime-pricing/
+│   │   ├── trading-engine/
+│   │   ├── carbon-credit-trading/
+│   │   ├── contract-management/
+│   │   ├── market-forecasting/
+│   │   ├── risk-analysis/
+│   │   └── settlement-engine/
+│   │
+│   ├── grid-balancing-service/
+│   │   ├── supply-demand-balancing/
+│   │   ├── peak-load-management/
+│   │   ├── frequency-stabilization/
+│   │   ├── ai-balancing-engine/
+│   │   ├── battery-dispatching/
+│   │   ├── emergency-load-shedding/
+│   │   ├── realtime-balancing/
+│   │   └── predictive-balancing/
+│   │
+│   ├── battery-storage-service/
+│   │   ├── battery-monitoring/
+│   │   ├── charging-optimization/
+│   │   ├── storage-forecasting/
+│   │   ├── degradation-analysis/
+│   │   ├── battery-health/
+│   │   ├── storage-analytics/
+│   │   ├── emergency-power-management/
+│   │   └── distributed-storage/
+│   │
+│   ├── predictive-maintenance-service/
+│   │   ├── transformer-health/
+│   │   ├── turbine-monitoring/
+│   │   ├── sensor-analysis/
+│   │   ├── vibration-analysis/
+│   │   ├── thermal-analysis/
+│   │   ├── maintenance-prediction/
+│   │   ├── asset-health-scoring/
+│   │   └── maintenance-analytics/
+│   │
+│   ├── weather-service/
+│   │   ├── weather-monitoring/
+│   │   ├── storm-prediction/
+│   │   ├── solar-radiation-analysis/
+│   │   ├── wind-forecasting/
+│   │   ├── climate-risk-analysis/
+│   │   ├── grid-weather-correlation/
+│   │   ├── disaster-alerting/
+│   │   └── weather-forecasting/
+│   │
+│   ├── geospatial-service/
+│   │   ├── grid-map-engine/
+│   │   ├── power-flow-visualization/
+│   │   ├── outage-heatmaps/
+│   │   ├── renewable-site-analysis/
+│   │   ├── transmission-geospatial-data/
+│   │   ├── infrastructure-risk-analysis/
+│   │   ├── satellite-monitoring/
+│   │   └── realtime-grid-maps/
+│   │
+│   ├── recommendation-engine/
+│   │   ├── energy-optimization-recommendations/
+│   │   ├── maintenance-recommendations/
+│   │   ├── grid-balancing-recommendations/
+│   │   ├── renewable-energy-recommendations/
+│   │   ├── battery-usage-recommendations/
+│   │   ├── ai-ranking/
+│   │   ├── explainability/
+│   │   ├── realtime-serving/
+│   │   └── monitoring/
+│   │
+│   ├── ai-chat-service/
+│   │   ├── energy-grid-chatbot/
+│   │   ├── grid-operations-assistant/
+│   │   ├── renewable-assistant/
+│   │   ├── multilingual-support/
+│   │   ├── voice-assistant/
+│   │   ├── outage-assistant/
+│   │   ├── maintenance-assistant/
+│   │   ├── rag-retrieval/
+│   │   ├── semantic-search/
+│   │   ├── embeddings/
+│   │   ├── prompt-management/
+│   │   ├── context-management/
+│   │   ├── memory-management/
+│   │   ├── tool-calling/
+│   │   ├── hallucination-detection/
+│   │   ├── guardrails/
+│   │   └── pii-redaction/
+│   │
+│   ├── ai-agent-platform/
+│   │   ├── agent-registry/
+│   │   ├── orchestration-engine/
+│   │   ├── workflow-memory/
+│   │   ├── grid-agent/
+│   │   ├── renewable-agent/
+│   │   ├── trading-agent/
+│   │   ├── maintenance-agent/
+│   │   ├── outage-agent/
+│   │   ├── balancing-agent/
+│   │   ├── weather-agent/
+│   │   ├── compliance-agent/
+│   │   ├── optimization-agent/
+│   │   ├── support-agent/
+│   │   └── sre-agent/
+│   │
+│   ├── analytics-service/
+│   │   ├── grid-analytics/
+│   │   ├── energy-consumption-analytics/
+│   │   ├── renewable-analytics/
+│   │   ├── operational-intelligence/
+│   │   ├── predictive-analytics/
+│   │   ├── carbon-analytics/
+│   │   ├── realtime-dashboards/
+│   │   └── executive-reporting/
+│   │
+│   ├── ai-self-healing-platform/
+│   │   ├── incident-detection/
+│   │   ├── anomaly-monitoring/
+│   │   ├── alert-correlation/
+│   │   ├── root-cause-analysis/
+│   │   ├── remediation-engine/
+│   │   ├── kubernetes-healing/
+│   │   ├── service-recovery/
+│   │   ├── ai-runbooks/
+│   │   ├── incident-replay/
+│   │   ├── chaos-remediation/
+│   │   └── postmortem-generation/
+│   │
+│   ├── data-generator-service/
+│   │   ├── synthetic-grid-generator/
+│   │   ├── synthetic-power-generation/
+│   │   ├── synthetic-renewable-energy/
+│   │   ├── synthetic-smart-meter-data/
+│   │   ├── synthetic-telemetry-streams/
+│   │   ├── synthetic-weather-generator/
+│   │   ├── synthetic-battery-data/
+│   │   ├── synthetic-grid-failures/
+│   │   ├── outage-simulator/
+│   │   ├── blackout-simulator/
+│   │   ├── energy-demand-simulator/
+│   │   ├── anomaly-generator/
+│   │   ├── observability-event-generator/
+│   │   ├── chatbot-conversation-generator/
+│   │   ├── ai-training-data/
+│   │   ├── kafka-streaming-engine/
+│   │   ├── realtime-streaming/
+│   │   ├── replay-engine/
+│   │   ├── orchestration/
+│   │   ├── schedulers/
+│   │   ├── benchmark-datasets/
+│   │   ├── chaos-event-generator/
+│   │   ├── load-testing-data/
+│   │   ├── screenshots-generator/
+│   │   ├── video-generator/
+│   │   ├── document-generator/
+│   │   └── tests/
+│   │
+│   ├── notification-service/
+│   │   ├── outage-alerts/
+│   │   ├── maintenance-alerts/
+│   │   ├── grid-alerts/
+│   │   ├── renewable-alerts/
+│   │   ├── emergency-alerts/
+│   │   └── realtime-notifications/
+│   │
+│   └── reporting-service/
+│       ├── operational-reports/
+│       ├── grid-reports/
+│       ├── compliance-reports/
+│       ├── renewable-energy-reports/
+│       ├── executive-reports/
+│       └── audit-reports/
+│
+├── data-platform/
+│   ├── postgres/
+│   ├── mongodb/
+│   ├── redis/
+│   ├── kafka/
+│   ├── qdrant/
+│   ├── elasticsearch/
+│   ├── clickhouse/
+│   ├── data-lake/
+│   ├── data-warehouse/
+│   ├── metadata-management/
+│   ├── data-governance/
+│   ├── data-quality/
+│   ├── data-lineage/
+│   └── master-data-management/
+│
+├── ai/
+│   ├── llm-runtime/
+│   │   ├── ollama/
+│   │   ├── llama/
+│   │   ├── mistral/
+│   │   ├── deepseek/
+│   │   ├── gemma/
+│   │   ├── phi/
+│   │   └── inference-server/
+│   │
+│   ├── rag-system/
+│   ├── embeddings/
+│   ├── grid-balancing-models/
+│   ├── renewable-forecasting-models/
+│   ├── predictive-maintenance-models/
+│   ├── energy-demand-models/
+│   ├── multimodal-ai/
+│   ├── computer-vision/
+│   ├── geospatial-ai/
+│   ├── digital-twin/
+│   ├── agentic-ai/
+│   ├── synthetic-data-generation/
+│   └── ai-security/
+│
+├── mlops/
+│   ├── airflow/
+│   ├── mlflow/
+│   ├── feature-store/
+│   ├── data-validation/
+│   ├── model-training/
+│   ├── model-serving/
+│   ├── renewable-forecasting/
+│   ├── grid-balancing/
+│   ├── predictive-maintenance/
+│   ├── demand-forecasting/
+│   ├── prompt-evaluation/
+│   ├── drift-detection/
+│   ├── ai-observability/
+│   └── model-monitoring/
+│
+├── observability/
+│   ├── prometheus/
+│   ├── grafana/
+│   ├── loki/
+│   ├── tempo/
+│   ├── alertmanager/
+│   ├── opentelemetry/
+│   ├── distributed-tracing/
+│   ├── service-maps/
+│   ├── grid-monitoring/
+│   ├── power-monitoring/
+│   ├── renewable-monitoring/
+│   ├── ai-observability/
+│   ├── realtime-monitoring/
+│   └── dashboards/
+│
+├── security/
+│   ├── vault/
+│   ├── iam/
+│   ├── encryption/
+│   ├── zero-trust/
+│   ├── runtime-security/
+│   ├── vulnerability-scanning/
+│   ├── image-scanning/
+│   ├── prompt-security/
+│   ├── policy-management/
+│   ├── grid-security/
+│   └── audit-logging/
+│
+├── sre/
+│   ├── chaos-engineering/
+│   ├── incident-management/
+│   ├── reliability-testing/
+│   ├── performance-testing/
+│   ├── load-testing/
+│   ├── stress-testing/
+│   ├── failover-testing/
+│   ├── disaster-recovery/
+│   ├── auto-remediation/
+│   ├── capacity-planning/
+│   ├── slos/
+│   ├── slis/
+│   ├── error-budgets/
+│   └── postmortems/
+│
+├── sdk/
+│   ├── python-sdk/
+│   ├── cli/
+│   └── internal-tools/
+│
+├── benchmarks/
+├── api-contracts/
+├── protobuf/
+├── avro/
+├── performance-reports/
+│
+├── scripts/
+│   ├── deploy.sh
+│   ├── rollback.sh
+│   ├── cleanup.sh
+│   ├── monitoring.sh
+│   ├── backup.sh
+│   ├── restore.sh
+│   ├── recovery.sh
+│   ├── validation.sh
+│   ├── platform-healthcheck.sh
+│   ├── kafka-bootstrap.sh
+│   ├── qdrant-bootstrap.sh
+│   ├── elasticsearch-bootstrap.sh
+│   ├── minio-bootstrap.sh
+│   ├── airflow-bootstrap.sh
+│   ├── mlflow-bootstrap.sh
+│   ├── ollama-bootstrap.sh
+│   ├── resilience-test.sh
+│   ├── load-test.sh
+│   ├── stress-test.sh
+│   ├── chaos-test.sh
+│   └── disaster-recovery-test.sh
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   ├── e2e/
+│   ├── performance/
+│   ├── load/
+│   ├── stress/
+│   ├── resilience/
+│   ├── chaos/
+│   ├── security/
+│   ├── compliance/
+│   ├── mlops/
+│   ├── llmops/
+│   ├── rag/
+│   ├── chatbot/
+│   ├── ai-agents/
+│   ├── grid-management/
+│   ├── renewable-energy/
+│   ├── smart-metering/
+│   ├── predictive-maintenance/
+│   ├── grid-balancing/
+│   ├── data-generation/
+│   └── platform/
+│
+└── .github/
+    └── workflows/
+        ├── ci.yml
+        ├── cd.yml
+        ├── security.yml
+        ├── dependency-scan.yml
+        ├── image-scan.yml
+        ├── kubernetes.yml
+        ├── observability.yml
+        ├── mlops.yml
+        ├── llmops.yml
+        ├── rag.yml
+        ├── chatbot.yml
+        ├── ai-agents.yml
+        ├── renewable-forecasting.yml
+        ├── predictive-maintenance.yml
+        ├── synthetic-data.yml
+        ├── chaos-engineering.yml
+        ├── disaster-recovery.yml
+        └── platform-validation.yml
